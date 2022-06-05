@@ -61,16 +61,21 @@ def simple_checkout(request):
 
 
 
-#def registrarusuario(request):
- #   idUsuario = request.POST['idUsuario']
-  #  rut = request.POST['rut']
-   # clave = request.POST['clave']
-    #nombre = request.POST['nombre']
-    #apellido = request.POST['apellido']
-#    correo = request.POST['correo']
-#    telefono = request.POST['telefono']
+def registrarusuario(request):
+    rut = request.POST['rut']
+    clave = request.POST['clave']
+    nombre = request.POST['nombre']
+    apellido = request.POST['apellido']
+    correo = request.POST['correo']
+    telefono = request.POST['telefono']
+    tipousuario2 =TipoUsuario.objects.get(idTipoUsuario = 2)
+    existe = None
+    try:
+        existe = Usuario.objects.get(correo = correo)
+        messages.error(request,'Este correo ya está regristrado')
+        return redirect('registrar') 
+    except:
+        Usuario.objects.create(rut = rut, clave = clave, nombre = nombre, apellido = apellido, correo = correo, telefono = telefono, tipousuario2 = idTipoUsuario)
+        x = Usuario
     
     
- #   Usuario.objects.create(rut = rut, clave = clave, nombre = nombre, apellido = apellido, correo = correo, telefono = telefono)
-#    return redirect('formulario')
-#

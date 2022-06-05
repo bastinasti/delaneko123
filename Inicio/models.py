@@ -22,24 +22,50 @@ class Producto(models.Model):
     def __str__(self):
         return self.nomProducto
 
-class TipoUser(models.Model):
-    idtipo_user = models.AutoField(primary_key = True, verbose_name = "Id tipo")
-    nomb_tipo = models.CharField(max_length = 10, verbose_name = "Admin Cliente", null = False, blank = False,)
+class TipoUsuario(models.Model):
+    idTipoUsuario = models.AutoField(primary_key = True, verbose_name = "Id tipo")
+    nombreTipo = models.CharField(max_length = 10, verbose_name = "Admin Cliente", null = False, blank = False)
     
     def __str__(self):
-        return self.nomb_tipo
+        return self.nombreTipo
 
 
 class Usuario(models.Model):
-    rut = models.CharField(max_length = 10, primary_key = True, verbose_name = "Rut usuarios", null = True)
+    rut = models.CharField(primary_key = True, max_length = 10, verbose_name = "Rut usuarios")
     username = models.CharField(max_length = 10, verbose_name = "Nombre de usuario", blank = True, null = True)
     clave = models.CharField(max_length = 15, verbose_name = "Contraseña", blank = False, null = False)
     nombre = models.CharField(max_length = 15, verbose_name = "Nombre Cliente", blank = False, null = False)
     apellido = models.CharField(max_length = 15, verbose_name = "Apellido Cliente", blank = False, null = False)
     correo = models.CharField(max_length = 15, verbose_name = "Correo", blank = False, null = False)
     telefono = models.CharField(max_length = 9, verbose_name = "Telefono Agregar el 9", blank = False, null = False)
-    idtipo_user = models.ForeignKey(TipoUser, on_delete=models.CASCADE , null = True)
+    idTipoUsuario = models.ForeignKey(TipoUsuario,on_delete=models.CASCADE)
 
 
     def __str__(self):
         return self.rut
+
+class Region(models.Model):
+    idRegion = models.AutoField(primary_key = True, verbose_name = "Id comuna")
+    nregion = models.CharField(max_length = 30, verbose_name = "Nombre region", blank = False, null = False)
+
+    def __str__(self):
+        return self.nregion
+
+
+class Comuna(models.Model):
+    idComuna = models.AutoField(primary_key = True, verbose_name = "Id comuna")
+    ncomuna = models.CharField(max_length = 30, verbose_name = "Nombre comuna", blank = False, null = False)
+    idRegion = models.ForeignKey(Region,on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.ncomuna
+
+class Direccion(models.Model):
+    idDireccion = models.AutoField(primary_key = True, verbose_name="id Direccion")
+    calle = models.CharField(max_length = 30, verbose_name = "Calle", blank = False, null = False)
+    observacion = models.CharField(max_length = 40, verbose_name="Observacion si es Casa dpto etc", blank = True, null = True)
+    idComuna = models.ForeignKey(Comuna,on_delete=models.CASCADE)
+    rut = models.ForeignKey(Usuario,on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.calle
