@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Producto Usuario TipoUsuario
+from .models import Producto, Usuario, TipoUsuario
 
 # Create your views here.
 def inicio(request):
@@ -62,20 +62,20 @@ def simple_checkout(request):
 
 
 def registrarusuario(request):
-    rut = request.POST['rut']
-    clave = request.POST['clave']
-    nombre = request.POST['nombre']
-    apellido = request.POST['apellido']
-    correo = request.POST['correo']
-    telefono = request.POST['telefono']
+    rut1 = request.POST['rut']
+    clave1 = request.POST['con1']
+    nombre1 = request.POST['nombre']
+    apellido1 = request.POST['apellido1']
+    correo1 = request.POST['email']
+    telefono1 = request.POST['numero']
     tipousuario2 =TipoUsuario.objects.get(idTipoUsuario = 2)
     existe = None
     try:
-        existe = Usuario.objects.get(correo = correo)
-        messages.error(request,'Este correo ya está regristrado')
+        existe = Usuario.objects.get(rut = rut1)
+        messages.error(request,'Este rut ya está regristrado')
         return redirect('registrar') 
     except:
-        Usuario.objects.create(rut = rut, clave = clave, nombre = nombre, apellido = apellido, correo = correo, telefono = telefono, tipousuario2 = idTipoUsuario)
+        Usuario.objects.create(rut = rut1, nombre = nombre1, apellido = apellido1, correo = correo1, telefono = telefono1, tipousuario2 = idTipoUsuario)
         x = Usuario
     
     
