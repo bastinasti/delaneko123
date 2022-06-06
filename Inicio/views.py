@@ -71,7 +71,7 @@ def registrarusuario(request):
     tipousuario2 = TipoUsuario.objects.get(idTipoUsuario = 2)
     existe = None
     
-    Usuario.objects.create(rut = rut1, nombre = nombre1, apellido = apellido1, correo = correo1, telefono = telefono1, idTipoUsuario = tipousuario2)
+    Usuario.objects.create(rut = rut1, username = nombre1 ,clave = clave1, nombre = nombre1, apellido = apellido1, correo = correo1, telefono = telefono1, idTipoUsuario = tipousuario2)
     return redirect('Inicio')
     
     
