@@ -69,7 +69,7 @@ def registrarusuario(request):
     correo1 = request.POST['email']
     tipousuario1 = TipoUsuario.objects.get(idTipoUsuario = 2)
     
-    Usuario.objects.create(idTipoUsuario = tipousuario1)
-    return redirect('inicio')
+    Usuario.objects.create(nombre = nombre1, apellido = apellido1, clave = clave1, correo = correo1, idTipoUsuario = tipousuario1)
+    return redirect('registro')
     
     
