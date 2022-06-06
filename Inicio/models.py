@@ -32,13 +32,10 @@ class TipoUsuario(models.Model):
 
 class Usuario(models.Model):
     idUsuario = models.AutoField(primary_key = True, verbose_name = "Id usuarios")
-    rut = models.CharField(max_length = 10, verbose_name = "Rut usuarios")
-    username = models.CharField(max_length = 10, verbose_name = "Nombre de usuario", blank = True, null = True)
-    clave = models.CharField(max_length = 15, verbose_name = "Contraseña", blank = False, null = False)
     nombre = models.CharField(max_length = 15, verbose_name = "Nombre Cliente", blank = False, null = False)
     apellido = models.CharField(max_length = 15, verbose_name = "Apellido Cliente", blank = False, null = False)
+    clave = models.CharField(max_length = 15, verbose_name = "Contraseña", blank = False, null = False)
     correo = models.CharField(max_length = 15, verbose_name = "Correo", blank = False, null = False)
-    telefono = models.CharField(max_length = 9, verbose_name = "Telefono Agregar el 9", blank = False, null = False)
     idTipoUsuario = models.ForeignKey(TipoUsuario,on_delete=models.CASCADE)
 
 
