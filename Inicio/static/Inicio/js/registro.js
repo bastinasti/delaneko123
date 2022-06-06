@@ -1,63 +1,5 @@
 
 
-var url = "https://apis.digital.gob.cl/dpa/regiones";
-
-fetch(url).then(function (result) {
-  if (result.ok) {
-    return result.json();
-  }
-
-}).then(function (data) {
-  data.forEach(function (element) {
-    let regiones = document.getElementById("regiones");
-    let opt = document.createElement("option");
-    opt.appendChild(document.createTextNode(element.nombre));
-    opt.value = element.codigo;
-
-    regiones.appendChild(opt);
-
-  })
-})
-
-var url2 = "https://apis.digital.gob.cl/dpa/provincias";
-
-fetch(url2).then(function (result) {
-  if (result.ok) {
-    return result.json();
-  }
-
-}).then(function (data) {
-  data.forEach(function (element) {
-    let regiones = document.getElementById("city");
-    let opt = document.createElement("option");
-    opt.appendChild(document.createTextNode(element.nombre));
-    opt.value = element.codigo;
-
-    regiones.appendChild(opt);
-
-  })
-})
-
-
-
-fetch(url2).then(function (result) {
-  if (result.ok) {
-    return result.json();
-  }
-
-}).then(function (data) {
-  data.forEach(function (element) {
-    let regiones = document.getElementById("city");
-    let opt = document.createElement("option");
-    opt.appendChild(document.createTextNode(element.nombre));
-    opt.value = element.codigo;
-
-    regiones.appendChild(opt);
-
-  })
-})
-
-
 
 
 /*validacion form*/
@@ -162,11 +104,11 @@ inputs.forEach((input) => {
 
 
 formulario.addEventListener('submit', (e) => {
-  e.preventDefault();
+  
 
 
   const terminos = document.getElementById('terminos');
-  if(campos.nombre && campos.ap1 && campos.ap2 && campos.numero && campos.email && campos.password && terminos.checked ){
+  if(campos.nombre && campos.ap1 && campos.numero && campos.email && campos.password && terminos.checked ){
     formulario.reset();
 
     document.getElementById('formulario__mensaje-exito').classList.add('formulario__mensaje-exito-activo');
@@ -185,22 +127,3 @@ formulario.addEventListener('submit', (e) => {
 });
 
 
-/* 
-function calcularEdad(fecha) {
-  var hoy = new Date();
-  var cumpleanos = new Date(fecha);
-  var edad = hoy.getFullYear() - cumpleanos.getFullYear();
-  var m = hoy.getMonth() - cumpleanos.getMonth();
-  if (m < 0 || (m === 0 && hoy.getDate() < cumpleanos.getDate())) {
-      edad--;
-  }
-  return edad;
-}
-
-var edad = calcularEdad("date");
-if(edad >= 18){
-  document.querySelector(`#grupo__password2 .formulario__input-error`).classList.add('formulario__input-error-activo');
-}else{
-  alert("Eres menor de edad :( ");
-}
-*/
