@@ -68,14 +68,10 @@ def registrarusuario(request):
     apellido1 = request.POST['apellido1']
     correo1 = request.POST['email']
     telefono1 = request.POST['numero']
-    tipousuario2 =TipoUsuario.objects.get(idTipoUsuario = 2)
+    tipousuario2 = TipoUsuario.objects.get(idTipoUsuario = 2)
     existe = None
-    try:
-        existe = Usuario.objects.get(rut = rut1)
-        messages.error(request,'Este rut ya está regristrado')
-        return redirect('registrar') 
-    except:
-        Usuario.objects.create(rut = rut1, nombre = nombre1, apellido = apellido1, correo = correo1, telefono = telefono1, tipousuario2 = idTipoUsuario)
-        x = Usuario
+    
+    Usuario.objects.create(rut = rut1, nombre = nombre1, apellido = apellido1, correo = correo1, telefono = telefono1, idTipoUsuario = tipousuario2)
+    return redirect('Inicio')
     
     
