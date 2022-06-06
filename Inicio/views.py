@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Producto, Usuario, TipoUsuario
 
 # Create your views here.
@@ -62,16 +62,14 @@ def simple_checkout(request):
 
 
 def registrarusuario(request):
-    rut1 = request.POST['rut']
-    clave1 = request.POST['con1']
+    
     nombre1 = request.POST['nombre']
     apellido1 = request.POST['apellido1']
+    clave1 = request.POST['con1']
     correo1 = request.POST['email']
-    telefono1 = request.POST['numero']
-    tipousuario2 = TipoUsuario.objects.get(idTipoUsuario = 2)
-    existe = None
+    tipousuario1 = TipoUsuario.objects.get(idTipoUsuario = 2)
     
-    Usuario.objects.create(rut = rut1, username = nombre1 ,clave = clave1, nombre = nombre1, apellido = apellido1, correo = correo1, telefono = telefono1, idTipoUsuario = tipousuario2)
-    return redirect('Inicio')
+    Usuario.objects.create(idTipoUsuario = tipousuario1)
+    return redirect('inicio')
     
     

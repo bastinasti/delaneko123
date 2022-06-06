@@ -40,7 +40,7 @@ class Usuario(models.Model):
 
 
     def __str__(self):
-        return self.rut
+        return self.nombre
 
 class Region(models.Model):
     idRegion = models.AutoField(primary_key = True, verbose_name = "Id comuna")
