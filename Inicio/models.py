@@ -31,7 +31,8 @@ class TipoUsuario(models.Model):
 
 
 class Usuario(models.Model):
-    rut = models.CharField(primary_key = True, max_length = 10, verbose_name = "Rut usuarios")
+    idUsuario = models.AutoField(primary_key = True, verbose_name = "Id usuarios")
+    rut = models.CharField(max_length = 10, verbose_name = "Rut usuarios")
     username = models.CharField(max_length = 10, verbose_name = "Nombre de usuario", blank = True, null = True)
     clave = models.CharField(max_length = 15, verbose_name = "Contraseña", blank = False, null = False)
     nombre = models.CharField(max_length = 15, verbose_name = "Nombre Cliente", blank = False, null = False)
@@ -65,7 +66,7 @@ class Direccion(models.Model):
     calle = models.CharField(max_length = 30, verbose_name = "Calle", blank = False, null = False)
     observacion = models.CharField(max_length = 40, verbose_name="Observacion si es Casa dpto etc", blank = True, null = True)
     idComuna = models.ForeignKey(Comuna,on_delete=models.CASCADE)
-    rut = models.ForeignKey(Usuario,on_delete=models.CASCADE)
+    idUsuario = models.ForeignKey(Usuario,on_delete=models.CASCADE)
 
     def __str__(self):
         return self.calle

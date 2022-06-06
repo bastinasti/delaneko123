@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Producto
+from .models import Producto Usuario TipoUsuario
 
 # Create your views here.
 def inicio(request):
