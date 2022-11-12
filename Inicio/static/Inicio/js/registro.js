@@ -2,6 +2,7 @@
 
 
 
+
 /*validacion form*/
 const formulario = document.getElementById('formulario');
 const inputs = document.querySelectorAll('#formulario input')
